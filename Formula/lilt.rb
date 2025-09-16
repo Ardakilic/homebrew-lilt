@@ -14,7 +14,11 @@ class Lilt < Formula
   end
 
   def install
-    bin.install "lilt"
+    if Hardware::CPU.arm?
+      bin.install "lilt-darwin-arm64" => "lilt"
+    else
+      bin.install "lilt-darwin-amd64" => "lilt"
+    end
   end
 
   test do
